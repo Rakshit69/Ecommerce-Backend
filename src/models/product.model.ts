@@ -1,12 +1,15 @@
 import mongoose from "mongoose";
 
+
 const schema = new mongoose.Schema({
 
-    name: {
+    name:
+    {
         type: String,
         required: [true, "Please enter Name"],
     },
-    photo: {
+    photo:
+    {
         type: String,
         required: [true, "Please add Photo"],
     },
@@ -23,6 +26,7 @@ const schema = new mongoose.Schema({
         type: Number,
         required: [true, "Please add Price"],
     },
+
 }, { timestamps: true, });
 
 

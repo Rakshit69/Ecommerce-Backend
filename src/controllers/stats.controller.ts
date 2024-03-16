@@ -1,4 +1,3 @@
-import { json } from "stream/consumers";
 import { myCache } from "../app.js";
 import { TryCatch } from "../middlewares/error.middleware.js";
 import { Order } from "../models/order.model.js";
@@ -33,6 +32,7 @@ export const getDashboardStats = TryCatch(async (req, res, next) => {
                 $lte: thisMOnth.end
             }
         });
+
         const lastMonthProductsPromise =  User.find({
             createdAt: {
                 $gte: lastMonth.start,
@@ -46,6 +46,7 @@ export const getDashboardStats = TryCatch(async (req, res, next) => {
                 $lte: thisMOnth.end
             }
         });
+
         const lastMonthUsersPromise =  User.find({
             createdAt: {
                 $gte: lastMonth.start,
@@ -59,6 +60,7 @@ export const getDashboardStats = TryCatch(async (req, res, next) => {
                 $lte: thisMOnth.end
             }
         });
+
         const lastMonthOrdresPromise =  Order.find({
             createdAt: {
                 $gte: lastMonth.start,
@@ -76,9 +78,7 @@ export const getDashboardStats = TryCatch(async (req, res, next) => {
         const latestTransactionPromise = Order
             .find({})
             .select(["orderItems", "discount", "total","status"])//id will come also  by default so we need to remove it from select option
-            .limit(4);
-        
-        
+            .limit(4);       
         const [
             thisMonthProducts,
             thisMonthUsers,
@@ -148,8 +148,6 @@ export const getDashboardStats = TryCatch(async (req, res, next) => {
 
    
         const categoryCount= await getInventories({ categories, productsCount });
-
-      
 
         const Usersratio = {
             male: usersCount - femaleUsersCount,
@@ -236,10 +234,12 @@ export const getPieChartStats = TryCatch(async (req, res, next) => {
             shipped: shippedOrder,
             delivered: deliveredOrder,
         };
+
         const productCategories = await getInventories({
             categories,
             productsCount
         });
+
         const stocksAvalibility = {
             inStock: productsCount - outOfStock,
             outOfStock
@@ -380,7 +380,6 @@ export const getBarChartStats = TryCatch(async (req, res, next) => {
 
 
         myCache.set(key, JSON.stringify(charts));
-
     }
 
     return res
@@ -389,6 +388,7 @@ export const getBarChartStats = TryCatch(async (req, res, next) => {
         success: true,
         charts
     });
+    
     
 });
 

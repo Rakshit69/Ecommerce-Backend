@@ -8,15 +8,15 @@ export interface NewUserRequestBody{
     role:string,
     gender: string,
     dob:Date,
-
 }
+
 export interface NewProductRequestBody{
     name: string,
     category:string,
     price: number,
     stock: number,
-    
 }
+
 export type userController = (
     req: Request,
     res: Response,
@@ -30,6 +30,7 @@ export type SearchRequestQuery = {
     category?: string,
     page?:string,
 }
+
 export interface BaseQuery{
     name?: {
         $regex: string | undefined;
@@ -41,6 +42,8 @@ export interface BaseQuery{
     },
     category?: string;
 }
+
+
 export type InvalidateCache = {
     products?: boolean;
     order?: boolean;

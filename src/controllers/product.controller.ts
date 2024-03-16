@@ -36,7 +36,8 @@ export const getCategories = TryCatch(async (req, res, next) => {
     
     categories = await Product.distinct("category");
     myCache.set("product-categories", JSON.stringify(categories));
-    console.log(categories);
+
+
   }
   return res.status(201).json({
     success: true,
@@ -153,9 +154,7 @@ export const updateProduct = TryCatch(
 
     await product.deleteOne();
     invalidateCache({ products: true ,admin :true,productId:String(product._id)});
-
-    
-  return res.status(201).json({
+    return res.status(201).json({
     success: true,
     message:"product deleted successfully thik"
   });
@@ -177,7 +176,7 @@ export const searchAllProducts = TryCatch(async (req: Request<{}, {}, {}, Search
 //   $lte:Number(price)//price less then  or equal to
 //       },
 //       category:category
-      //     , 
+//     , 
       if (search) {
           baseQuery.name = {
             

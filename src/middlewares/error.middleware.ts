@@ -12,7 +12,8 @@ export const errorMiddleware = (err: ErrorHandler, req: Request, res: Response, 
             success: false,
             message: err.message ,
             statusCode:err.statusCode
-        }
+      },
+      
     )
 }
 export const TryCatch = (func: userController) => 

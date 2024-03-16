@@ -18,37 +18,42 @@ interface IUser extends Document{
 
 
 const schema = new mongoose.Schema({
+
     _id: {
         type: String,
         required: [true,"Please enter ID"],
     },
+
     name: {
         type: String,
         required: [true, "Please enter Name"],
     },
+
     email: {
         type: String,
         unique: [true, "Email already Exists"],
         required: [true, "Please enter Email"],
         validate:validator.default.isEmail,
     },
+
     photo: {
         type: String,
         required: [true, "Please add Photo"],
     },
+
     role: {
         type: String,
         enum: [ "user" , "admin"],
         default : "user",
         
     },
+
     gender: {
         type: String,
         enum: [ "male" , "female"],
-        required: [true,"Please enter Gender"],
-        
-        
+        required: [true,"Please enter Gender"],  
     },
+
     dob: {
         type: Date,
         required:[true,"Please enter DOB"],
@@ -69,5 +74,4 @@ schema.virtual("age").get(function(this: IUser) {
 })
 
 export const User = mongoose.model<IUser>("User", schema);
-
 

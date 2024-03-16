@@ -2,7 +2,9 @@ import mongoose, { Schema } from "mongoose";
 import { User } from "./user.model.js";
 
 const schema = new mongoose.Schema({
+
     shippingInfo: {
+        
         address: {
             type: String,
             required:true
@@ -11,6 +13,7 @@ const schema = new mongoose.Schema({
             type: String,
             required:true
         },
+        
         state: {
             type: String,
             required:true
@@ -73,12 +76,10 @@ const schema = new mongoose.Schema({
             price: Number,
             productId: {
                 type: mongoose.Types.ObjectId,
-                ref: "Product",
-                
+                ref: "Product",               
             }
         }
     ]
-
 }, { timestamps: true, });
 
 
